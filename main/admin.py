@@ -6,8 +6,10 @@ from django.db import models
 
 class CursoAdmin(admin.ModelAdmin):
     fieldsets = [
-        ("Titulo/fecha", {"fields": ["curso_titulo", "curso_publicado"]}),
-        ("Contenido", {"fields": ["curso_contenido"]})
+        ("Titulo/fecha", {"fields": ["titulo", "publicado"]}),
+        ("Contenido", {"fields": ["contenido"]}),
+        ("Costo", {"fields": ["precio"]})
+
     ]
     formfield_overrides= {
         models.TextField:{'widget': TinyMCE()}

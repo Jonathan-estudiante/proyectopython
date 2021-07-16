@@ -1,0 +1,57 @@
+{% extends "main/principal.html" %}
+{% block content %}
+<style>
+    table{
+        border-collapse: collapse
+    }
+    th{
+        text-align: center;
+    }
+    td, h2{
+        text-align: center;
+    }
+</style>
+<h2>LISTA DE TODOS LOS CURSOS</h1>
+<table class="striped">
+    <thead>
+        <tr >
+
+            <th>Título</th>
+
+            <th>Contenido</th>
+
+            <th>Fecha</th>
+
+            <th>Precio</th>
+
+            <th >Opciones</th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for curso in cursos %}
+        <tr>
+
+            <td>{{curso.titulo}}</td>
+
+            <td>{{curso.contenido}}</td>
+
+            <td>{{curso.publicado}}</td>
+
+            <td>{{curso.costo}}</td>
+
+            <td><a href="{% url 'editar_curso' curso.id %}"><button class="btn">EDITAR</button clas></a>
+                
+                <a href="{% url 'eliminar_curso' curso.id %}"><button class="btn">ELIMINAR</button></a>
+            </td>
+
+        </tr>
+        {% endfor %}
+
+    </tbody>
+
+</table>
+<br>
+<a href="{% url 'curso_crear' %}"><button class="btn">CREAR UN NUEVO CURSO</button></a>
+{% endblock %}

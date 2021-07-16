@@ -1,0 +1,14 @@
+{% extends "main/principal.html" %}
+{% block content %}
+<style>
+    form {
+        font-family: inherit;
+        font-size: 100%;
+    }
+</style>
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn" type="submit">Editar</button>
+</form>
+{% endblock content %}
