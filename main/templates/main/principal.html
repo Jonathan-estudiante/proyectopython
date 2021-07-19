@@ -8,12 +8,17 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'tinymce/css/prism.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <title>CRUD EN DIJANGO</title>
+    {% block css %}
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/css/materialize.min.css"
+        integrity="sha256-qj3p6P1fJIV+Ndv7RW1ovZI2UhOuboj9GcODzcNFIN8=" crossorigin="anonymous" />
+    {% endblock css %}
+    <title>CRUD EN DJANGO</title>
 </head>
 
 <body>
     {% include "main/includes/navbar.html" %}
-    <div class="container">  
+    <div class="container">
         <br>
         {% block content %}
         {% endblock %}
@@ -23,9 +28,24 @@
 
     {% include "main/includes/messages.html" %}
 
-
-
     <script src="{% static 'tinymce/jsprism.js' %}"></script>
+    {% block javascript %}
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/js/materialize.min.js"
+        integrity="sha256-SrBfGi+Zp2LhAvy9M1bWOCXztRU9Ztztxmu5BcYPcPE=" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            // Initialize materialize data picker
+            $('select').formSelect();
+
+        });
+    </script>
+    {% endblock javascript %}
+
 </body>
 
 

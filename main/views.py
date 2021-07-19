@@ -4,17 +4,15 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from django.views.generic import CreateView, UpdateView, ListView, DeleteView
 from django.urls import reverse_lazy
-
 from .models import Curso
 from .forms import*
 # Create your views here.
-
 
 def homepage(request):
     return render(request, "main/inicio.html", {"cursos": Curso.objects.all()})
 
 
-def registro(request):
+def RegistroUsuario(request):
 
     if request.method == "POST":
         form = UserCreationForm(request.POST)
@@ -36,7 +34,7 @@ def registro(request):
 
 def logout_request(request):
     logout(request)
-    messages.info(request, "Saliste exitosamente")
+    messages.info(request, "Saliste exitosamente") 
     return redirect("main:homepage")
 
 
@@ -67,6 +65,7 @@ class CursoCrear(CreateView):
     template_name = 'main/curso_crear.html'
     success_url = reverse_lazy('main:lista_cursos')
 
+
 def CursoLista(request):
     cursos = Curso.objects.all()
     contexto = {
@@ -79,7 +78,8 @@ class EditarCurso(UpdateView):
     model = Curso
     form_class = CursoForm
     template_name = 'main/editar_curso.html'
-    success_url = reverse_lazy ('main:lista_cursos')
+    success_url = reverse_lazy('main:lista_cursos')
+
 
 def EliminarCurso(request, id):
     cursos = Curso.objects.get(id=id)

@@ -8,7 +8,7 @@ class CursoAdmin(admin.ModelAdmin):
     fieldsets = [
         ("Titulo/fecha", {"fields": ["titulo", "publicado"]}),
         ("Contenido", {"fields": ["contenido"]}),
-        ("Costo", {"fields": ["precio"]})
+        ("Costo", {"fields": ["costo"]})
 
     ]
     formfield_overrides= {
