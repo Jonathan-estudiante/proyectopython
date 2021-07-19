@@ -7,7 +7,9 @@ from django.conf.urls import url
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(('main.urls', 'main'), namespace='main')),
+    path('', include(('inscripciones.urls', 'inscripciones'), namespace='inscripciones')),
     path('tinymce/', include('tinymce.urls')),
+    url( r'^ select2 /' ,  include ( 'select2.urls' )), 
     path('eliminar_curso/<int:id>/', EliminarCurso, name='eliminar_curso'),
     path('curso_crear/', CursoCrear.as_view(), name="curso_crear"),
     url(r'^editar_curso/(?P<pk>\d+)/$',EditarCurso.as_view(), name="editar_curso"),
