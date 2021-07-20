@@ -1,0 +1,55 @@
+{% extends "main/principal.html" %}
+{% block content %}
+<style>
+    table{
+        border-collapse: collapse
+    }
+    th{
+        text-align: center;
+    }
+    td, h2{
+        text-align: center;
+    }
+</style>
+<h2>LISTA DE TODOS LOS INSCRITOS</h1>
+<table class="striped">
+    <thead>
+        <tr >
+
+            <th>Curso</th>
+
+            <th>Costo total</th>
+
+            <th>Fecha registro</th>
+
+            <th>Usuario</th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for inscrito in inscritos %}
+        <tr>
+
+            <td>{{inscrito.nombre_curso}}</td>
+
+            <td>{{inscrito.costo_total}}</td>
+
+            <td>{{inscrito.fecha_registro_curso}}</td>
+
+            <td>{{inscrito.usuario}}</td>
+
+            <td><a href="{% url 'inscripciones:editar_inscritos' inscrito.id %}"><button class="btn">EDITAR</button></a>
+                
+                <a href="{% url 'inscripciones:eliminar_inscrito' inscrito.id %}"><button class="btn">ELIMINAR</button></a>
+            </td>
+
+        </tr>
+        {% endfor %}
+
+    </tbody>
+
+</table>
+<br>
+<a href="{% url 'inscripciones:inscripcion' %}"><button class="btn">CREAR UN NUEVO CURSO</button></a>
+{% endblock %}

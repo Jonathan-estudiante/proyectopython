@@ -12,5 +12,8 @@ urlpatterns = [
     path('logout/', views.logout_request, name="logout"),
     path('login/', views.login_request, name="login"),
     path('lista_cursos/', views.CursoLista, name="lista_cursos"),
+    path('eliminar_curso/<int:id>/', EliminarCurso, name='eliminar_curso'),
+    path('curso_crear/', CursoCrear.as_view(), name="curso_crear"),
+    url(r'^editar_curso/(?P<pk>\d+)/$',EditarCurso.as_view(), name="editar_curso"),    
 
 ]

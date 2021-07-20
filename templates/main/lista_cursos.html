@@ -41,9 +41,9 @@
 
             <td>{{curso.costo}}</td>
 
-            <td><a href="{% url 'editar_curso' curso.id %}"><button class="btn">EDITAR</button clas></a>
+            <td><a href="{% url 'main:editar_curso' curso.id %}"><button class="btn">EDITAR</button clas></a>
                 
-                <a href="{% url 'eliminar_curso' curso.id %}"><button class="btn">ELIMINAR</button></a>
+                <a href="{% url 'main:eliminar_curso' curso.id %}"><button class="btn">ELIMINAR</button></a>
             </td>
 
         </tr>
@@ -53,5 +53,5 @@
 
 </table>
 <br>
-<a href="{% url 'curso_crear' %}"><button class="btn">CREAR UN NUEVO CURSO</button></a>
+<a href="{% url 'main:curso_crear' %}"><button class="btn">CREAR UN NUEVO CURSO</button></a>
 {% endblock %}

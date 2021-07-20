@@ -2,6 +2,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from main.views import *
+from inscripciones import views
 from django.conf.urls import url
 
 urlpatterns = [
@@ -10,8 +11,5 @@ urlpatterns = [
     path('', include(('inscripciones.urls', 'inscripciones'), namespace='inscripciones')),
     path('tinymce/', include('tinymce.urls')),
     url( r'^ select2 /' ,  include ( 'select2.urls' )), 
-    path('eliminar_curso/<int:id>/', EliminarCurso, name='eliminar_curso'),
-    path('curso_crear/', CursoCrear.as_view(), name="curso_crear"),
-    url(r'^editar_curso/(?P<pk>\d+)/$',EditarCurso.as_view(), name="editar_curso"),
-    
+
 ]

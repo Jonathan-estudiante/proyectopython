@@ -5,6 +5,7 @@
             <li><a href="/">Inicio</a></li>
             {% if user.is_authenticated %}
             <li><a href="/lista_cursos">Cursos</a></li>
+            <li><a href="/lista_inscritos">Inscripciones</a></li>
             <li><a href="#">{{user.username}}</a></li>
             <li><a href="/logout">Salir</a></li>
             {% else %}

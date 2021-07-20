@@ -3,8 +3,8 @@
 <form method="POST" class="post-form">
     {% csrf_token %}
     {% load crispy_forms_tags %}
-    {% crispy form_registro %}
-    {% crispy form_inscripcion %}
+    {{ form_registro|crispy }}
+    {{ form_inscripcion|crispy }}
     <button class="btn" type="submit">Registrar!</button>
 </form>
 <br>
