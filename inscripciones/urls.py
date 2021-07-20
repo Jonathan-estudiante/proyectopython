@@ -7,5 +7,5 @@ from django.conf.urls import url
 app_name = 'inscripciones'
 
 urlpatterns = [
-    path('inscripcion/', views.RegistroUsuarioInscripcion, name="inscripcion"),
+    path('inscripcion/', views.inscripcion_form, name="inscripcion"),
 ]

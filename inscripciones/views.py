@@ -7,7 +7,7 @@ from django.urls import reverse_lazy, reverse
 
 # Create your views here.
 
-def RegistroUsuarioInscripcion(request):
+def inscripcion_form(request):
 
     if request.method == "POST":      
         form_registro = RegistroForm(request.POST, prefix="registro_form")
@@ -23,6 +23,9 @@ def RegistroUsuarioInscripcion(request):
     else:   
         form_registro = RegistroForm(prefix="registro_form")
         form_inscripcion = InscripcionesForm(prefix="inscripcion_form")
-        context = { 'form' : form_registro, 'form2' : form_inscripcion }
+        context = { 
+            'form_registro' : form_registro, 
+            'form_inscripcion' : form_inscripcion 
+            }
 
-    return render(request, 'main/inscribirse/inscripcion.html',  context)
+    return render(request, 'inscripciones/inscripcion_form.html',  context)
