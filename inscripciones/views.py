@@ -7,62 +7,22 @@ from django.urls import reverse_lazy, reverse
 
 # Create your views here.
 
-class RegistroUsuarioInscripcion(CreateView):
-    model = User
-    second_model = InscripcionesForm
-    template_name = "main/inscribirse/inscripcion.html"
-    form_class = RegistroForm
-    second_form_class = InscripcionesForm
-    success_url = reverse_lazy("main:homepage")
+def RegistroUsuarioInscripcion(request):
 
-    def get_context_data(self, **kwargs):
-            context = super(RegistroUsuarioInscripcion, self).get_context_data(**kwargs)
-            if 'form' not in context:
-                context['form'] = self.form_class(self.request.GET)
-            if 'form2' not in context:
-                context['form2'] = self.second_form_class(self.request.GET)
-            return context
-    def post(self, request, *args, **kwargs):
-                self.object = self.get_object()
-                form = self.form_class(request.POST)
-                form2 = self.second_form_class(request.POST)
-                if form.is_valid() and form2.is_valid():
-                        crear = form.save(commit=False)
-                        crear.registro = form2.save()
-                        crear.save()
-                        return HttpResponseRedirect(self.get_success_url())
-                else:
-                        return self.render_to_response(self.get_context_data(form=form, form2=form2))
+    if request.method == "POST":      
+        form_registro = RegistroForm(request.POST, prefix="registro_form")
+        form_inscripcion = InscripcionesForm(reques.POST, prefix="inscripcion_form")
+        if form_registro.is_valid() and form_inscripcion.is_valid():  
+            estudiante = form_registro.save(commit=False)
+            estudiante.user = request.user
+            estudiante.save()
 
-# class RegistroModelo1(CreateView):
-#     model = User
-#     form_class = RegistroForm
-#     template_name = 'main/inscribirse/inscripcion.html'
-#     success_url = None
+            inscripcion = form_inscripcion.save(commit=False)
+            inscripcion.usuario = estudiante 
+            inscripcion.save()
+    else:   
+        form_registro = RegistroForm(prefix="registro_form")
+        form_inscripcion = InscripcionesForm(prefix="inscripcion_form")
+        context = { 'form' : form_registro, 'form2' : form_inscripcion }
 
-#     def form_valid(self, form):
-#         instance_model1 = form.save(commit=False)
-#         instance_model1.save()
-        
-#         return HttpResponseRedirect(reverse('main/inscribirse/inscripcion.html', kwargs={'pk':instance_model1.pk}))
-
-# class InscripcionModel2(CreateView):
-#     model =     Inscripciones
-#     form_class = InscripcionesForm
-#     template_name = 'main/inscribirse/inscripcion.html'
-#     success_url = reverse_lazy('main:homepage')
-
-#     def form_valid(self, form):
-#         instance_model2 = form.save(commit = False)
-#         instance_model2.relacionalModel1 = self.instance_model1
-#         instance_model2.save()
-        
-#         return super(InscripcionModel2, self).form_valid(form)
-    
-#     def get(self, request, *args, **kwargs):
-#         self.instance_model1 = get_object_or_404('User', pk=kwargs.get('pk'))
-#         return super(InscripcionModel2, self).get(request, *args, **kwargs)
-
-#     def post(self, request, *args, **kwargs):
-#         self.instance_model1 = get_object_or_404('User', pk=kwargs.get('pk'))
-#         return super(InscripcionModel2, self).get(request, *args, **kwargs)
+    return render(request, 'main/inscribirse/inscripcion.html',  context)

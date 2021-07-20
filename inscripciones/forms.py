@@ -18,7 +18,6 @@ class InscripcionesForm(forms.ModelForm):
     class Meta:
         model = Inscripciones
         fields = (
-            'usuario',
             'fecha_registro_curso',
             'nombre_curso',
             'costo_total',
@@ -28,7 +27,6 @@ class InscripcionesForm(forms.ModelForm):
             'nombre_curso': 'Nombre del curso',
         }
         widgets = {
-            'usuario': forms.Select(attrs={'class': 'form-control'}),
             'nombre_curso': forms.Select(attrs={'class': 'form-control'}),
         }
 
