@@ -7,8 +7,6 @@ from django.db import models
 class InscripcionesAdmin(admin.ModelAdmin):
     fieldsets = [
         ("Usuario", {"fields": ["usuario"]}),
-        ("Nombre del Estudiante", {"fields": ["nombre_estudiante"]}),
-        ("Apellido del Estudiante", {"fields": ["apellido_estudiante"]}),
         ("Fecha", {"fields": ["fecha_registro_curso"]}),
         ("Curso", {"fields": ["nombre_curso"]}),
         ("Costo", {"fields": ["costo_total"]})

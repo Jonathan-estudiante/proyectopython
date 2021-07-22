@@ -1,47 +1,54 @@
 {% extends "main/principal.html" %}
 {% block content %}
 <style>
-    table{
+    table {
         border-collapse: collapse
     }
-    th{
+
+    th {
         text-align: center;
     }
-    td, h2{
+
+    td,
+    h4,
+    h5 {
         text-align: center;
     }
 </style>
-<h2>LISTA DE TODOS LOS INSCRITOS</h1>
+<h4>LISTA DE TODOS LOS INSCRITOS EN {{curso|upper}}</h4>
+<!-- <h5>Total del curso <span id="totalcursojs"></span></h5> -->
+<h5>Total del curso <span id="totalcursopy">{{suma.costo_total__sum}}</span> dólares</h5>
+
 <table class="striped">
     <thead>
-        <tr >
-
+        <tr>
             <th>Curso</th>
-
-            <th>Costo total</th>
 
             <th>Fecha registro</th>
 
             <th>Usuario</th>
 
+            <th>Costo total</th>
+
+            <th>Opciones</th>
         </tr>
     </thead>
-
     <tbody>
         {% for inscrito in inscritos %}
         <tr>
 
             <td>{{inscrito.nombre_curso}}</td>
 
-            <td>{{inscrito.costo_total}}</td>
-
             <td>{{inscrito.fecha_registro_curso}}</td>
 
             <td>{{inscrito.usuario}}</td>
 
+            <td class="row_costo">{{inscrito.costo_total}}</td>
+
             <td><a href="{% url 'inscripciones:editar_inscritos' inscrito.id %}"><button class="btn">EDITAR</button></a>
-                
-                <a href="{% url 'inscripciones:eliminar_inscrito' inscrito.id %}"><button class="btn">ELIMINAR</button></a>
+
+                <a href="{% url 'inscripciones:eliminar_inscritos' inscrito.id %}"><button
+                        class="btn">ELIMINAR</button></a>
             </td>
 
         </tr>
@@ -51,5 +58,22 @@
 
 </table>
 <br>
-<a href="{% url 'inscripciones:inscripcion' %}"><button class="btn">CREAR UN NUEVO CURSO</button></a>
+<a href="{% url 'inscripciones:inscripcion' %}"><button class="btn">NUEVA INSCRIPCIÓN</button></a>
+<!-- <script>
+
+    var sumaFilas = document.querySelectorAll(".row_costo");
+    var total = 0;
+    sumaFilas.forEach(function (e) {
+
+        // obtenemos las columnas de cada fila
+        var suma = parseFloat(e.textContent);
+
+        // mostramos el total por fila
+        total += suma;
+    });
+
+    var suma = document.querySelectorAll("#totalcursojs");
+    suma[0].innerHTML =total.toFixed(2) + " dólares";
+
+</script> -->
 {% endblock %}

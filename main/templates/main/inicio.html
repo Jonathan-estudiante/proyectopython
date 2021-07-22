@@ -1,21 +1,22 @@
 {% extends "main/principal.html" %}
 {% block content %}
-    <div class="row">
-        {% for curso in cursos %}
-        <div class="col s12 m6">
-            <div class="card blue-grey darken-1">
-                <div class="card-content white-text">
-                    <span class="card-title">{{cur.titulo}}</span>
-                    <p>{{curso.publicado}}</p>
-                    <p>{{curso.contenido|safe}}</p>
-                    <p>{{curso.precio|safe}}</p>
-                </div>
-                <div class="card-action">
-                    <a href="inscripcion/">Inscribirse</a>
-                    <a href="#">Ver</a>
-                </div>
+<style></style>
+<div class="row">
+    {% for curso in cursos %}
+    <div class="col s12 m6">
+        <div class="card pink lighten-2">
+            <div class="card-content white-text">
+                <span class="card-title">{{curso.titulo}}</span>
+                <p>{{curso.publicado}}</p>
+                <p>{{curso.contenido|safe}}</p>
+                <p>{{curso.precio|safe}}</p>
+            </div>
+            <div class="card-action pink darken-1">
+                <a href="/inscripcion">Inscribirse</a>
+                <a href="{% url 'main:lista_por_curso' curso.pk %}">Lista</a>
             </div>
         </div>
-        {% endfor %}
     </div>
+    {% endfor %}
+</div>
 {% endblock %}

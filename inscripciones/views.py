@@ -1,14 +1,12 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponseRedirect
-from inscripciones.models import Inscripciones
+from django.shortcuts import render,  redirect
 from inscripciones.forms import*
-from django.views.generic import CreateView, UpdateView, ListView, DeleteView
-from django.urls import reverse_lazy, reverse
+from django.views.generic import UpdateView, ListView, DeleteView
+from django.urls import reverse_lazy
 from urllib import request
 
 # Create your views here.
 
-def inscripcion_form(request):
+def CrearInscripcion(request):
     form_registro = RegistroForm(prefix="registro_form")
     form_inscripcion = InscripcionesForm(prefix="inscripcion_form")
     context = { 
@@ -26,8 +24,10 @@ def inscripcion_form(request):
             inscripcion = form_inscripcion.save(commit=False)
             inscripcion.usuario = estudiante 
             inscripcion.save()
+            return render(request, 'inscripciones/lista_inscritos.html', context)
+            
 
-    return render(request, 'inscripciones/lista_inscritos.html',  context)
+    return render(request, 'inscripciones/inscripcion_form.html',  context)
 
 def ListaInscritos(request):
     inscritos = Inscripciones.objects.all()
@@ -41,8 +41,9 @@ def EliminarInscritos(request, id):
     inscritos.delete()
     return redirect("inscripciones:lista_inscritos")
     
-class EditarIncritos(UpdateView):
+class EditarInscritos(UpdateView):
     model = Inscripciones
     form_class = InscripcionesForm
     template_name = 'inscripciones/editar_inscritos.html'
     success_url = reverse_lazy("inscripciones:lista_inscritos")
+

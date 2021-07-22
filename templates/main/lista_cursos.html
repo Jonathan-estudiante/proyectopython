@@ -1,57 +1,60 @@
 {% extends "main/principal.html" %}
 {% block content %}
 <style>
-    table{
+    table {
         border-collapse: collapse
     }
-    th{
+
+    th {
         text-align: center;
     }
-    td, h2{
+
+    td,
+    h2 {
         text-align: center;
     }
 </style>
 <h2>LISTA DE TODOS LOS CURSOS</h1>
-<table class="striped">
-    <thead>
-        <tr >
+    <table class="striped">
+        <thead>
+            <tr>
 
-            <th>Título</th>
+                <th>Título</th>
 
-            <th>Contenido</th>
+                <th>Contenido</th>
 
-            <th>Fecha</th>
+                <th>Fecha</th>
 
-            <th>Precio</th>
+                <th>Precio</th>
 
-            <th >Opciones</th>
+                <th>Opciones</th>
 
-        </tr>
-    </thead>
+            </tr>
+        </thead>
 
-    <tbody>
-        {% for curso in cursos %}
-        <tr>
+        <tbody>
+            {% for curso in cursos %}
+            <tr>
 
-            <td>{{curso.titulo}}</td>
+                <td>{{curso.titulo}}</td>
 
-            <td>{{curso.contenido}}</td>
+                <td>{{curso.contenido}}</td>
 
-            <td>{{curso.publicado}}</td>
+                <td>{{curso.publicado}}</td>
 
-            <td>{{curso.costo}}</td>
+                <td>{{curso.costo}}</td>
 
-            <td><a href="{% url 'main:editar_curso' curso.id %}"><button class="btn">EDITAR</button clas></a>
-                
-                <a href="{% url 'main:eliminar_curso' curso.id %}"><button class="btn">ELIMINAR</button></a>
-            </td>
+                <td><a href="{% url 'main:editar_curso' curso.id %}"><button class="btn">EDITAR</button></a>
 
-        </tr>
-        {% endfor %}
+                    <a href="{% url 'main:eliminar_curso' curso.id %}"><button class="btn">ELIMINAR</button></a>
+                </td>
 
-    </tbody>
+            </tr>
+            {% endfor %}
 
-</table>
-<br>
-<a href="{% url 'main:curso_crear' %}"><button class="btn">CREAR UN NUEVO CURSO</button></a>
-{% endblock %}
+        </tbody>
+
+    </table>
+    <br>
+    <a href="{% url 'main:curso_crear' %}"><button class="btn">CREAR UN NUEVO CURSO</button></a>
+    {% endblock %}
